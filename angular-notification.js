@@ -48,8 +48,14 @@ function $notificationProvider() {
       function createNotification() {
         // Extend options with default provider options.
         options = angular.extend({
-          focusWindowOnClick: true
+          focusWindowOnClick: true,
+          backgroundOnly: false
         }, provider.options || {}, options);
+
+        // Only show background notifications when page is hidden
+        if (options.backgroundOnly && !document.hidden) {
+          return;
+        }
 
         // Create a base notification.
         try {

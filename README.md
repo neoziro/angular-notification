@@ -41,6 +41,7 @@ Angular-notification provides some sugar to the default API, the permission is r
 
 - "delay": Specify a delay (in ms) after the notification is automatically closed. Default `null`.
 - "focusWindowOnClick": Focus the window when the notification is clicked (works only on Chrome, Firefox prevent this for security issue). Default `true`.
+- "backgroundOnly": Only create the notification if the window isn't visible. Default `false`.
 
 ```js
 $notification('title', {
@@ -50,7 +51,8 @@ $notification('title', {
   tag: 'my-tag',
   icon: '/my-icon.jpg',
   delay: 1000, // in ms
-  focusWindowOnClick: true // focus the window on click
+  focusWindowOnClick: true, // focus the window on click
+  backgroundOnly: false // Skip notification if window has focus
 })
 ```
 
