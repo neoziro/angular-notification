@@ -38,16 +38,18 @@ describe('Notification provider', function () {
       $window.Notification.respondPermission('granted');
       expect($window.Notification).to.be.calledWith('title', {
         foo: 'bar',
-        focusWindowOnClick: true
+        focusWindowOnClick: true,
+        backgroundOnly: false
       });
     });
 
     it('should extend options in the correct order', function () {
-      $notification('title', {foo: 'x', focusWindowOnClick: false});
+      $notification('title', {foo: 'x', focusWindowOnClick: false, backgroundOnly: false});
       $window.Notification.respondPermission('granted');
       expect($window.Notification).to.be.calledWith('title', {
         foo: 'x',
-        focusWindowOnClick: false
+        focusWindowOnClick: false,
+        backgroundOnly: false
       });
     });
   });
