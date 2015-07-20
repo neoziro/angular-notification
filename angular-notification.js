@@ -129,16 +129,16 @@ function $notificationProvider() {
      */
 
     NgNotification.requestPermission = function () {
-      return $q(function (resolve, reject) {
-        if (!$window.Notification)
-          return reject();
-
-        $window.Notification.requestPermission(function (permission) {
-          // Persist permission.
-          $window.Notification.permission = $window.Notification.permission || permission;
-          resolve($window.Notification.permission);
-        });
+      var deferred = $q.defer();
+      if (!$window.Notification) {
+        return deferred.reject();
+      }
+      $window.Notification.requestPermission(function (permission) {
+        // Persist permission.
+        $window.Notification.permission = $window.Notification.permission || permission;
+        deferred.resolve($window.Notification.permission);
       });
+      return deferred.promise;
     };
 
     /**
